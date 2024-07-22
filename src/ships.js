@@ -48,8 +48,9 @@ export class Gameboard {
         }
     }
     
-    placeShips(headLocation, ship) {
+    placeShips(headLocation, ship, direction) {
         //vertical placement
+        if (direction === 'vertical') { // checks to see if the ship is placed vertically or horizontaly
         let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']; //Will be used to place the ship in all of the locations
         let startLetter = headLocation.charAt(0);
         let startIndex = letters.indexOf(startLetter);
@@ -68,8 +69,8 @@ export class Gameboard {
                 }
             }
 
-            //Battleship
-        } else if (ship === 'battleship') {
+            
+        } else if (ship === 'battleship') { //vertical placement of battleship
             let lengthOfBattleShip = 4;
             let preDefinedLetters = ['h', 'i', 'j'];
             if(preDefinedLetters.includes(headLocation[0])) {
@@ -81,7 +82,7 @@ export class Gameboard {
                 }
             }
 
-        } else if (ship === 'submarine' ) {
+        } else if (ship === 'submarine' ) { //vertical placement of submarine
             let lengthOfSubmarine = 3;
             let preDefinedLetters = ['i', 'j'];
             if(preDefinedLetters.includes(headLocation[0])) {
@@ -93,7 +94,7 @@ export class Gameboard {
                 }
             }
 
-        } else if(ship === 'destroyer') {
+        } else if(ship === 'destroyer') { //vertical placement of destroyer
             let lengthOfDestroyer = 3;
             let preDefinedLetters = ['i', 'j'];
             if(preDefinedLetters.includes(headLocation[0])) {
@@ -105,7 +106,7 @@ export class Gameboard {
                 }
             }
 
-        } else if (ship === 'patrol') {
+        } else if (ship === 'patrol') { //vertical placement of patrol
             let lengthOfPatrol = 2;
             let preDefinedLetters = ['j'];
             if(preDefinedLetters.includes(headLocation[0])) {
@@ -119,6 +120,72 @@ export class Gameboard {
         } else {
             return "Not a valid ship";
         }
+
+    } else if (direction === 'horizontal') { //Horizontal Placement
+        let startNum = 0;
+     
+        if (headLocation.length === 3) { //This is just to deal with the number 10 as it is 2 numbers long
+            startNum = 10;
+        } else {
+            startNum = headLocation.charAt(1);
+        }
+       
+        let num = Number(startNum); //turning the string above in to an integer
+        let letterInLocation = headLocation.charAt(0);
+
+        if (ship === 'aircraftCarrier') { //horizontal placement of aircraft carrier
+            let lengthOfAircraftCarrier = 5;
+            if((lengthOfAircraftCarrier + num) > 10) {
+                return 'cant fit here';
+            } else {
+                for (let i = num; i < num + lengthOfAircraftCarrier; i++) {
+                    let shipLocation = letterInLocation + i;
+                    this.shipPlacement[shipLocation] = 'AircraftCarrier';
+                }
+            }
+        } else if (ship === 'battleship') { //horizontal placement of battleship
+            let lengthOfBattleShip = 4;
+            if((lengthOfBattleShip + num) > 10) {
+                return 'cant fit here';
+            } else {
+                for(let i = num; i < num + lengthOfBattleShip; i++) {
+                    let shipLocation = letterInLocation + i;
+                    this.shipPlacement[shipLocation] = 'BattleShip';
+                }
+            }
+        }
+        else if (ship === 'submarine') { //horizontal placement of submarine
+            let lengthOfSubmarine = 3;
+            if((lengthOfSubmarine + num) > 10) {
+                return 'cant fit here';
+            } else {
+                for (let i = num; i < num + lengthOfSubmarine; i++) {
+                    let shipLocation = letterInLocation + i;
+                    this.shipPlacement[shipLocation] = 'Submarine';
+                }
+            }
+        } else if (ship === 'destroyer') {
+            let lengthOfDestroyer = 3;
+            if((lengthOfDestroyer + num) > 10) {
+                return 'cant fit here';
+            } else {
+                for (let i = num; i < num + lengthOfDestroyer; i++) {
+                    let shipLocation = letterInLocation + i;
+                    this.shipPlacement[shipLocation] = 'Destroyer';
+                }
+            }
+        } else if(ship === 'patrol') {
+            let lengthOfPatrol = 2;
+            if((lengthOfPatrol + num) > 10) {
+                return 'cant fit here';
+            } else {
+                for (let i = num; i < num + lengthOfPatrol; i++) {
+                    let shipLocation = letterInLocation + i;
+                    this.shipPlacement[shipLocation] = 'Patrol';
+                }
+            }
+        }
+    }
     }
 
     recieveAttack(location) {
