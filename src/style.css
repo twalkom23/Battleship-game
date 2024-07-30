@@ -1,0 +1,36 @@
+body {
+    border: none;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+   
+}
+
+.topHalf {
+    grid-row: 1/2;
+    display: grid;
+    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
+    border-bottom: 2px solid black;
+
+}
+.bottomHalf {
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-rows: 1fr 7fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
+}
+.movesBoard {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    border: black dotted 1px;
+    width: 70%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+
+/* placing all the labels and squares for the moves board (top Board)

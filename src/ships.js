@@ -56,10 +56,16 @@ export class Gameboard {
         let startIndex = letters.indexOf(startLetter);
         let numInLocation = headLocation.charAt(1);
         
-        //Aircraft Carrier
+        //Aircraft Carrier Vertical
         if (ship === 'aircraftCarrier') {
             let lengthOfAircraftCarrier = 5;
             let preDefinedLetters = ['g', 'h', 'i', 'j']; //Checking to see if the placement of the head would make the ship hang off the board.
+            for(let i = startIndex; i < startIndex + lengthOfAircraftCarrier; i++) { //checks to make there is no overlap in ships
+                let shipLocation = letters[i] + numInLocation;
+                if (this.shipPlacement[shipLocation] !== null) {
+                    return
+                }
+            }
             if (preDefinedLetters.includes(headLocation[0])) {
                 return 'Cant fit here';
             } else {
@@ -69,11 +75,18 @@ export class Gameboard {
                 }
             }
 
-            
+            //Battleship Vertical
         } else if (ship === 'battleship') { //vertical placement of battleship
             let lengthOfBattleShip = 4;
             let preDefinedLetters = ['h', 'i', 'j'];
-            if(preDefinedLetters.includes(headLocation[0])) {
+
+            for(let i = startIndex; i < startIndex + lengthOfBattleShip; i++) { //checks for clashes of ships
+                let shipLocation = letters[i] + numInLocation;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return
+                }
+            } 
+            if(preDefinedLetters.includes(headLocation[0])) { //Places ship locations down
                 return 'cant fit here';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfBattleShip; i++) {
@@ -82,9 +95,17 @@ export class Gameboard {
                 }
             }
 
+            //Submarine Vertical
         } else if (ship === 'submarine' ) { //vertical placement of submarine
             let lengthOfSubmarine = 3;
             let preDefinedLetters = ['i', 'j'];
+
+            for(let i = startIndex; i < startIndex + lengthOfSubmarine; i++) { //checks for clashes of ships
+                let shipLocation = letters[i] + numInLocation;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return
+                }
+
             if(preDefinedLetters.includes(headLocation[0])) {
                 return 'cant fit here';
             } else {
@@ -93,10 +114,17 @@ export class Gameboard {
                     this.shipPlacement[shipLocation] = 'Submarine';
                 }
             }
-
+        }
         } else if(ship === 'destroyer') { //vertical placement of destroyer
             let lengthOfDestroyer = 3;
             let preDefinedLetters = ['i', 'j'];
+
+            for(let i = startIndex; i < startIndex + lengthOfDestroyer; i++) { //checks for clashes of ships
+                let shipLocation = letters[i] + numInLocation;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return
+                }
+            }
             if(preDefinedLetters.includes(headLocation[0])) {
                 return 'cant fit here';
             } else {
@@ -109,6 +137,12 @@ export class Gameboard {
         } else if (ship === 'patrol') { //vertical placement of patrol
             let lengthOfPatrol = 2;
             let preDefinedLetters = ['j'];
+            for(let i = startIndex; i < startIndex + lengthOfPatrol; i++) { //checks for clashes of ships
+                let shipLocation = letters[i] + numInLocation;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return
+                }
+            }
             if(preDefinedLetters.includes(headLocation[0])) {
                 return 'cant fit here';
             } else {
@@ -133,9 +167,16 @@ export class Gameboard {
         let num = Number(startNum); //turning the string above in to an integer
         let letterInLocation = headLocation.charAt(0);
 
-        if (ship === 'aircraftCarrier') { //horizontal placement of aircraft carrier
+        //Horizontal AircraftCarrier
+        if (ship === 'aircraftCarrier') { 
             let lengthOfAircraftCarrier = 5;
-            if((lengthOfAircraftCarrier + num) > 10) {
+            for (let i = num; i < num + lengthOfAircraftCarrier; i++) { //Checks for clashes
+                let shipLocation = letterInLocation + i;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return;
+                }
+            }
+            if((lengthOfAircraftCarrier - 1 + num) > 10) {
                 return 'cant fit here';
             } else {
                 for (let i = num; i < num + lengthOfAircraftCarrier; i++) {
@@ -143,9 +184,16 @@ export class Gameboard {
                     this.shipPlacement[shipLocation] = 'AircraftCarrier';
                 }
             }
-        } else if (ship === 'battleship') { //horizontal placement of battleship
+            //Horizontal BattleShip
+        } else if (ship === 'battleship') { 
             let lengthOfBattleShip = 4;
-            if((lengthOfBattleShip + num) > 10) {
+            for (let i = num; i < num + lengthOfBattleShip; i++) { //Checks for clashes
+                let shipLocation = letterInLocation + i;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return;
+                }
+            }
+            if((lengthOfBattleShip - 1 + num) > 10) { //Places battleship in position
                 return 'cant fit here';
             } else {
                 for(let i = num; i < num + lengthOfBattleShip; i++) {
@@ -154,9 +202,16 @@ export class Gameboard {
                 }
             }
         }
-        else if (ship === 'submarine') { //horizontal placement of submarine
+        //Horizontal placement of submarine
+        else if (ship === 'submarine') { 
             let lengthOfSubmarine = 3;
-            if((lengthOfSubmarine + num) > 10) {
+            for (let i = num; i < num + lengthOfSubmarine; i++) { //Checks for clashes
+                let shipLocation = letterInLocation + i;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return;
+                }
+            }
+            if((lengthOfSubmarine - 1 + num) > 10) {
                 return 'cant fit here';
             } else {
                 for (let i = num; i < num + lengthOfSubmarine; i++) {
@@ -164,9 +219,16 @@ export class Gameboard {
                     this.shipPlacement[shipLocation] = 'Submarine';
                 }
             }
+            //Horizontal Placement of Destroyer
         } else if (ship === 'destroyer') {
             let lengthOfDestroyer = 3;
-            if((lengthOfDestroyer + num) > 10) {
+            for (let i = num; i < num + lengthOfDestroyer; i++) { //Checks for clashes
+                let shipLocation = letterInLocation + i;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return;
+                }
+            }
+            if((lengthOfDestroyer - 1 + num) > 10) {
                 return 'cant fit here';
             } else {
                 for (let i = num; i < num + lengthOfDestroyer; i++) {
@@ -174,9 +236,16 @@ export class Gameboard {
                     this.shipPlacement[shipLocation] = 'Destroyer';
                 }
             }
+            //Horizontal Placement of Patrol
         } else if(ship === 'patrol') {
             let lengthOfPatrol = 2;
-            if((lengthOfPatrol + num) > 10) {
+            for (let i = num; i < num + lengthOfPatrol; i++) { //Checks for clashes
+                let shipLocation = letterInLocation + i;
+                if(this.shipPlacement[shipLocation] !== null) {
+                    return;
+                }
+            }
+            if((lengthOfPatrol - 1 + num) > 10) {
                 return 'cant fit here';
             } else {
                 for (let i = num; i < num + lengthOfPatrol; i++) {
@@ -191,10 +260,15 @@ export class Gameboard {
     recieveAttack(location) {
         if (this.coordinates[location] === false) {
             this.coordinates[location] = true;
+            if (this.shipPlacement[location] !== null) {
+                let shipHit = this.shipPlacement[location];
+                return shipHit;
+            }
         } else { 
             return 'Location already hit';
         }
     }
-}
+    }
+
 
 
