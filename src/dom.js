@@ -1,12 +1,10 @@
 export function startButton () {
     const startButton = document.querySelector('.newGameButton');
     startButton.addEventListener('click', () => {
-        console.log('Button Clicked');
+        
     })
 }
 export function newGameSetUp() {
-    console.log('hello');
-    
     const instructionsContainer = document.querySelector('.instructionsContainer');
     
     const instructions = document.createElement('p');

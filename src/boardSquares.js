@@ -1,3 +1,5 @@
+export let directionPlacement = '';
+
 //assigning event listeners to all of the squares
 //playerBoard 
 export function playerBoardSquares () {
@@ -9,14 +11,14 @@ export function playerBoardSquares () {
    })
 }
 
-export function directionalButtons () {
+export function directionalButtons () { //sets the direction variable to horizontal or vertical depending on the button clicked
     const horizontalButton = document.querySelector('.horizontalButton');
     const verticalButton = document.querySelector('.verticalButton');
 
     horizontalButton.addEventListener('click', () => {
-        console.log('horizontal Button clicked');
+        directionPlacement = 'horizontal';
     })
     verticalButton.addEventListener('click', () => {
-        console.log('vertical button clicked');
+        directionPlacement = 'vertical';  
     })
 }
