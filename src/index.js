@@ -1,30 +1,35 @@
 import _ from 'lodash';
-import { Ships, Gameboard } from './ships';
+import { Ships, Gameboard} from './ships';
 import './style.css';
+import { playerBoardSquares } from './boardSquares';
+import { newGameSetUp } from './dom';
 
 
-function gamePlay() {
+
+
 //Creating all of the ships
-const aircraftCarrier = new Ships(5);
-const battleship = new Ships(4);
-const submarine = new Ships(3);
-const destroyer = new Ships(3);
-const patrol = new Ships(2);
+const playerAircraftCarrier = new Ships(5);
+const playerBattleship = new Ships(4);
+const playerSubmarine = new Ships(3);
+const playerDestroyer = new Ships(3);
+const playerPatrol = new Ships(2);
+
+const compAircraftCarrier = new Ships(5);
+const compBattleship = new Ships(4);
+const compSubmarine = new Ships(3);
+const compDestroyer = new Ships(3);
+const compPatrol = new Ships(2);
 
 //creating the gameboards
 const playerGameBoard = new Gameboard;
 const compGameBoard = new Gameboard;
 
-//placeShips
-playerGameBoard.placeShips('a1', 'aircraftCarrier', 'vertical');
-playerGameBoard.placeShips('g2', 'battleship', 'vertical');
-playerGameBoard.placeShips('j1', 'submarine', 'horizontal');
-playerGameBoard.placeShips('h3', 'destroyer', 'horizontal');
-playerGameBoard.placeShips('e2', 'patrol', 'horizontal')
+function playGame() {
+    newGameSetUp();
 
-aircraftCarrier.hit();
-console.log(aircraftCarrier);
 }
+
+playGame();
 
 
 
