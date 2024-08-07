@@ -30,43 +30,43 @@ export function shipSelectionButtons () { //assigns the variable based on the bu
     const patrolSelection = document.querySelector('.patrolPlace');
 
     airCraftCarrierSelection.addEventListener('click', () => {
-        airCraftCarrierSelection.disabled = true;
-        battleshipSelection.disabled = false;
-        submarineSelection.disabled = false;
-        destroyerSelection.disabled = false;
-        patrolSelection.disabled = false;
+        airCraftCarrierSelection.classList.toggle('highlightShipButtons', true); //These toggle the colours of the current ship being selected
+        battleshipSelection.classList.toggle('highlightShipButtons', false);
+        submarineSelection.classList.toggle('highlightShipButtons', false);
+        destroyerSelection.classList.toggle('highlightShipButtons', false);
+        patrolSelection.classList.toggle('highlightShipButtons', false);
         shipSelection = 'aircraftCarrier';
     });
     battleshipSelection.addEventListener('click', () => {
-        airCraftCarrierSelection.disabled = false;
-        battleshipSelection.disabled = true;
-        submarineSelection.disabled = false;
-        destroyerSelection.disabled = false;
-        patrolSelection.disabled = false;
+        airCraftCarrierSelection.classList.toggle('highlightShipButtons', false); //These toggle the colours of the current ship being selected
+        battleshipSelection.classList.toggle('highlightShipButtons', true);
+        submarineSelection.classList.toggle('highlightShipButtons', false);
+        destroyerSelection.classList.toggle('highlightShipButtons', false);
+        patrolSelection.classList.toggle('highlightShipButtons', false);
         shipSelection = 'battleship';
     });
     submarineSelection.addEventListener('click', () => {
-        airCraftCarrierSelection.disabled = false;
-        battleshipSelection.disabled = false;
-        submarineSelection.disabled = true;
-        destroyerSelection.disabled = false;
-        patrolSelection.disabled = false;
+        airCraftCarrierSelection.classList.toggle('highlightShipButtons', false); //These toggle the colours of the current ship being selected
+        battleshipSelection.classList.toggle('highlightShipButtons', false);
+        submarineSelection.classList.toggle('highlightShipButtons', true);
+        destroyerSelection.classList.toggle('highlightShipButtons', false);
+        patrolSelection.classList.toggle('highlightShipButtons', false);
         shipSelection = 'submarine';
     });
     destroyerSelection.addEventListener('click', () => {
-        airCraftCarrierSelection.disabled = false;
-        battleshipSelection.disabled = false;
-        submarineSelection.disabled = false;
-        destroyerSelection.disabled = true;
-        patrolSelection.disabled = false;
+        airCraftCarrierSelection.classList.toggle('highlightShipButtons', false); //These toggle the colours of the current ship being selected
+        battleshipSelection.classList.toggle('highlightShipButtons', false);
+        submarineSelection.classList.toggle('highlightShipButtons', false);
+        destroyerSelection.classList.toggle('highlightShipButtons', true);
+        patrolSelection.classList.toggle('highlightShipButtons', false);
         shipSelection = 'destroyer';
     });
     patrolSelection.addEventListener('click', () => {
-        airCraftCarrierSelection.disabled = false;
-        battleshipSelection.disabled = false;
-        submarineSelection.disabled = false;
-        destroyerSelection.disabled = false;
-        patrolSelection.disabled = true;
+        airCraftCarrierSelection.classList.toggle('highlightShipButtons', false); //These toggle the colours of the current ship being selected
+        battleshipSelection.classList.toggle('highlightShipButtons', false);
+        submarineSelection.classList.toggle('highlightShipButtons', false);
+        destroyerSelection.classList.toggle('highlightShipButtons', false);
+        patrolSelection.classList.toggle('highlightShipButtons', true);
         shipSelection = 'patrol';
     })
 }
