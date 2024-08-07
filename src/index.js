@@ -23,16 +23,25 @@ const compPatrol = new Ships(2);
 //creating the gameboards
 const playerGameBoard = new Gameboard;
 const compGameBoard = new Gameboard;
+
+const playerBoardContainer = document.querySelector('.playerBoard');
 newGameSetUp(); //refreshes the board when a new game is started
 
 
 function playGame() {
     directionalButtons();
     shipSelectionButtons();
-    praticeButton.addEventListener('click', () => {
-        console.log(shipSelection);
-    })
-}
+    playerBoardContainer.addEventListener('click', (event) => { //This runs to place a ship, it will check a couple of things first
+        if (directionPlacement === null || shipSelection === null) {
+            console.log('one equals null');
+            return
+        }
+        let square = event.target.classList.value;
+        playerGameBoard.placeShips(square, shipSelection, directionPlacement);
+        console.log(playerGameBoard.shipPlacement);
+        })
+     }
+
 
 playGame();
 

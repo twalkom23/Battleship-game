@@ -1,16 +1,9 @@
-export let directionPlacement = '';
-export let shipSelection = '';
+export let directionPlacement = null;
+export let shipSelection = null;
 
 //assigning event listeners to all of the squares
 //playerBoard 
-export function playerBoardSquares () {
-   const playerBoardContainer = document.querySelector('.playerBoard');
-    
-   playerBoardContainer.addEventListener('click', (event) => {
-    let square = event.target.classList.value;
-    return square;
-   })
-}
+
 
 export function directionalButtons () { //sets the direction variable to horizontal or vertical depending on the button clicked
     const horizontalButton = document.querySelector('.horizontalButton');
