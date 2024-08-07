@@ -34,5 +34,5 @@ export function newGameSetUp() {
     instructionsContainer.appendChild(submarinePlaceButton);
     instructionsContainer.appendChild(destroyerPlaceButton);
     instructionsContainer.appendChild(patrolPlaceButton);
-    
 }
+

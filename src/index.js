@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import { Ships, Gameboard} from './ships';
 import './style.css';
-import { playerBoardSquares, directionalButtons, directionPlacement } from './boardSquares';
+import { playerBoardSquares, directionalButtons, directionPlacement, shipSelection, shipSelectionButtons } from './boardSquares';
 import { newGameSetUp, startButton } from './dom';
 
-const practiceButton = document.querySelector('.newGameButton');
 
+let praticeButton = document.querySelector('.newGameButton');
 
 //Creating all of the ships
 const playerAircraftCarrier = new Ships(5);
@@ -23,12 +23,15 @@ const compPatrol = new Ships(2);
 //creating the gameboards
 const playerGameBoard = new Gameboard;
 const compGameBoard = new Gameboard;
-
+newGameSetUp(); //refreshes the board when a new game is started
 
 
 function playGame() {
-    newGameSetUp();
     directionalButtons();
+    shipSelectionButtons();
+    praticeButton.addEventListener('click', () => {
+        console.log(shipSelection);
+    })
 }
 
 playGame();
