@@ -37,18 +37,43 @@ export function shipSelectionButtons () { //assigns the variable based on the bu
     const patrolSelection = document.querySelector('.patrolPlace');
 
     airCraftCarrierSelection.addEventListener('click', () => {
+        airCraftCarrierSelection.disabled = true;
+        battleshipSelection.disabled = false;
+        submarineSelection.disabled = false;
+        destroyerSelection.disabled = false;
+        patrolSelection.disabled = false;
         shipSelection = 'aircraftCarrier';
     });
     battleshipSelection.addEventListener('click', () => {
+        airCraftCarrierSelection.disabled = false;
+        battleshipSelection.disabled = true;
+        submarineSelection.disabled = false;
+        destroyerSelection.disabled = false;
+        patrolSelection.disabled = false;
         shipSelection = 'battleship';
     });
     submarineSelection.addEventListener('click', () => {
+        airCraftCarrierSelection.disabled = false;
+        battleshipSelection.disabled = false;
+        submarineSelection.disabled = true;
+        destroyerSelection.disabled = false;
+        patrolSelection.disabled = false;
         shipSelection = 'submarine';
     });
     destroyerSelection.addEventListener('click', () => {
+        airCraftCarrierSelection.disabled = false;
+        battleshipSelection.disabled = false;
+        submarineSelection.disabled = false;
+        destroyerSelection.disabled = true;
+        patrolSelection.disabled = false;
         shipSelection = 'destroyer';
     });
     patrolSelection.addEventListener('click', () => {
+        airCraftCarrierSelection.disabled = false;
+        battleshipSelection.disabled = false;
+        submarineSelection.disabled = false;
+        destroyerSelection.disabled = false;
+        patrolSelection.disabled = true;
         shipSelection = 'patrol';
     })
 }
