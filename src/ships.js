@@ -72,6 +72,7 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfAircraftCarrier; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'aircraftCarrier';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
 
@@ -92,6 +93,7 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfBattleShip; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'BattleShip';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
 
@@ -103,18 +105,21 @@ export class Gameboard {
             for(let i = startIndex; i < startIndex + lengthOfSubmarine; i++) { //checks for clashes of ships
                 let shipLocation = letters[i] + numInLocation;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return 'cant place'
+                    console.log('here 1 ');
+                    return 'cant place';
                 }
-
+            }
             if(preDefinedLetters.includes(headLocation[0])) {
+                console.log('here2');
                 return 'cant place';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfSubmarine; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'Submarine';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
-        }
+        
         } else if(ship === 'destroyer') { //vertical placement of destroyer
             let lengthOfDestroyer = 3;
             let preDefinedLetters = ['i', 'j'];
@@ -131,6 +136,7 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfDestroyer; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'Destroyer';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
 
@@ -149,6 +155,7 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfPatrol; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'Patrol';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
         } else {
@@ -182,6 +189,7 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfAircraftCarrier; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'AircraftCarrier';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
             //Horizontal BattleShip
@@ -199,6 +207,7 @@ export class Gameboard {
                 for(let i = num; i < num + lengthOfBattleShip; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'BattleShip';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
         }
@@ -217,6 +226,7 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfSubmarine; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'Submarine';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
             //Horizontal Placement of Destroyer
@@ -234,6 +244,7 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfDestroyer; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'Destroyer';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
             //Horizontal Placement of Patrol
@@ -251,10 +262,15 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfPatrol; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'Patrol';
+                    this.displayShipsOnBoard(shipLocation);
                 }
             }
         }
     }
+    }
+    displayShipsOnBoard(coord) {
+        let shipCoordinates = document.querySelector(`.${coord}`);
+        shipCoordinates.classList.toggle('shipPlacement', true);
     }
 
     recieveAttack(location) {
@@ -270,5 +286,6 @@ export class Gameboard {
     }
     }
 
+    
 
 
