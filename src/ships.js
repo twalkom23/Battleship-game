@@ -55,7 +55,7 @@ export class Gameboard {
         let startLetter = headLocation.charAt(0);
         let startIndex = letters.indexOf(startLetter);
         let numInLocation;
-        if(headLocation.length === 2) {
+        if(headLocation.length === 2) { //This is just to deal with the number 10
         numInLocation = headLocation.charAt(1);
         } else {numInLocation = headLocation.charAt(1) + headLocation.charAt(2);}
         
