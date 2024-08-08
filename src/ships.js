@@ -54,7 +54,10 @@ export class Gameboard {
         let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']; //Will be used to place the ship in all of the locations
         let startLetter = headLocation.charAt(0);
         let startIndex = letters.indexOf(startLetter);
-        let numInLocation = headLocation.charAt(1);
+        let numInLocation;
+        if(headLocation.length === 2) {
+        numInLocation = headLocation.charAt(1);
+        } else {numInLocation = headLocation.charAt(1) + headLocation.charAt(2);}
         
         //Aircraft Carrier Vertical
         if (ship === 'aircraftCarrier') {
