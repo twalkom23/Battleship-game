@@ -4,7 +4,7 @@ import './style.css';
 import { playerBoardSquares, directionalButtons, directionPlacement, shipSelection, shipSelectionButtons } from './boardSquares';
 import { newGameSetUp, startButton } from './dom';
 
-
+let practice = document.querySelector('.newGameButton');
 
 
 //Creating all of the ships
@@ -37,7 +37,6 @@ function playGame() {
         }
         let square = event.target.classList.value;
         let practice = playerGameBoard.placeShips(square, shipSelection, directionPlacement);
-        console.log(practice);
         if (practice === undefined) { //this will disable the button if the location selection is successful
             switch (shipSelection) {
                 case 'aircraftCarrier':
@@ -68,6 +67,11 @@ function playGame() {
             }
         }
         console.log(playerGameBoard);
+        })
+        practice.addEventListener('click', () => {
+            console.log('clicked');
+            compGameBoard.randomiseCompShips();
+            console.log(compGameBoard);
         })
      }
 
