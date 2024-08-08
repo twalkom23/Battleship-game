@@ -48,7 +48,7 @@ export class Gameboard {
         }
     }
     
-    placeShips(headLocation, ship, direction) {
+    placeShips(headLocation, ship, direction, playComp) {
         //vertical placement
         if (direction === 'vertical') { // checks to see if the ship is placed vertically or horizontaly
         let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']; //Will be used to place the ship in all of the locations
@@ -75,7 +75,10 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfAircraftCarrier; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'aircraftCarrier';
-                    this.displayShipsOnBoard(shipLocation);
+
+                    if (playComp === 'player'){
+                        this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
 
@@ -96,7 +99,9 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfBattleShip; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'BattleShip';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
 
@@ -119,7 +124,9 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfSubmarine; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'Submarine';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
         
@@ -139,7 +146,9 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfDestroyer; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'Destroyer';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
 
@@ -158,7 +167,9 @@ export class Gameboard {
                 for (let i = startIndex; i < startIndex + lengthOfPatrol; i++) {
                     let shipLocation = letters[i] + numInLocation;
                     this.shipPlacement[shipLocation] = 'Patrol';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
         } else {
@@ -192,7 +203,9 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfAircraftCarrier; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'AircraftCarrier';
+                    if(playComp === 'player'){
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
             //Horizontal BattleShip
@@ -210,7 +223,9 @@ export class Gameboard {
                 for(let i = num; i < num + lengthOfBattleShip; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'BattleShip';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
         }
@@ -229,7 +244,9 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfSubmarine; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'Submarine';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
             //Horizontal Placement of Destroyer
@@ -247,7 +264,9 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfDestroyer; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'Destroyer';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
             //Horizontal Placement of Patrol
@@ -265,7 +284,9 @@ export class Gameboard {
                 for (let i = num; i < num + lengthOfPatrol; i++) {
                     let shipLocation = letterInLocation + i;
                     this.shipPlacement[shipLocation] = 'Patrol';
+                    if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
+                    }
                 }
             }
         }
@@ -290,7 +311,7 @@ randomiseCompShips() {
     while(aircraftCarrierCheck === false) {//this will keep the loop running until the ship has been placed
         let direction = this.randomHorizontalOrVert();
         let location = this.randomSquareSelection(arrayOfSquares);
-        let placement = this.placeShips(location, 'aircraftCarrier', direction);
+        let placement = this.placeShips(location, 'aircraftCarrier', direction, 'comp');
         if(placement === undefined) {aircraftCarrierCheck = true;} //if successful placement this will escape the while loop and move to the next ship
     }
     while(battleshipCheck === false) {

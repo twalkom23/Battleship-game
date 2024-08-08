@@ -1,6 +1,8 @@
 export let directionPlacement = null;
 export let shipSelection = null;
 
+import { playerGameBoard } from ".";
+
 //assigning event listeners to all of the squares
 //playerBoard 
 
@@ -69,4 +71,43 @@ export function shipSelectionButtons () { //assigns the variable based on the bu
         patrolSelection.classList.toggle('highlightShipButtons', true);
         shipSelection = 'patrol';
     })
+}
+export function disableShipButtons() {
+    const playerBoardContainer = document.querySelector('.playerBoard');
+    playerBoardContainer.addEventListener('click', (event) => { //This runs to place a ship, it will check a couple of things first
+        if (directionPlacement === null || shipSelection === null) {
+            return
+        }
+        let square = event.target.classList.value;
+        let practice = playerGameBoard.placeShips(square, shipSelection, directionPlacement, 'player');
+        if (practice === undefined) { //this will disable the button if the location selection is successful
+            switch (shipSelection) {
+                case 'aircraftCarrier':
+                    let airCraftCarrierPlace = document.querySelector('.airCraftCarrierPlace');
+                    airCraftCarrierPlace.disabled = true;
+                    airCraftCarrierPlace.classList.toggle('highlightShipButtons', false);
+                    break;
+                case 'battleship':
+                    let battleshipPlace = document.querySelector('.battleshipPlace');
+                    battleshipPlace.disabled = true;
+                    battleshipPlace.classList.toggle('highlightShipButtons', false);
+                    break;
+                case 'submarine':
+                    let submarinePlace = document.querySelector('.submarinePlace');
+                    submarinePlace.disabled = true;
+                    submarinePlace.classList.toggle('highlightShipButtons', false);
+                    break;
+                case 'destroyer':
+                    let destroyerPlace = document.querySelector('.destroyerPlace');
+                    destroyerPlace.disabled = true;
+                    destroyerPlace.classList.toggle('highlightShipButtons', false);
+                    break;
+                case 'patrol':
+                    let patrolPlace = document.querySelector('.patrolPlace');
+                    patrolPlace.disabled = true;
+                    patrolPlace.classList.toggle('highlightShipButtons', false);
+                    break;
+            }
+        }
+        })
 }
