@@ -66,9 +66,11 @@ body {
     gap: 10px;
     height: 15%;
     justify-content: center;
+    padding-top: 20px;
 }
 .directionButtons button {
     width:100px;
+    
 }
 
 .instructionsContainer {
@@ -87,6 +89,14 @@ body {
     transform: scale(1.1);
     transition: 0.3s ease, transform 0.3s ease;
     opacity: 0.3;
+}
+
+.startGameButton {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    width: 50%;
+    justify-content: center;
+    margin-left: 25%;
 }
 
 

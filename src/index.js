@@ -22,16 +22,18 @@ const compPatrol = new Ships(2);
 
 //creating the gameboards
 export const playerGameBoard = new Gameboard;
-const compGameBoard = new Gameboard;
+export const compGameBoard = new Gameboard;
 
 
 newGameSetUp(); //refreshes the board when a new game is started
 
 
 function playGame() {
+    compGameBoard.randomiseCompShips(); //randomly places the computers ships in position
     directionalButtons();
     shipSelectionButtons();
     disableShipButtons();
+    
     
        
      }
