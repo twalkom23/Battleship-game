@@ -63,11 +63,11 @@ export class Gameboard {
             for(let i = startIndex; i < startIndex + lengthOfAircraftCarrier; i++) { //checks to make there is no overlap in ships
                 let shipLocation = letters[i] + numInLocation;
                 if (this.shipPlacement[shipLocation] !== null) {
-                    return
+                    return 'cant place'
                 }
             }
             if (preDefinedLetters.includes(headLocation[0])) {
-                return 'Cant fit here';
+                return 'cant place';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfAircraftCarrier; i++) {
                     let shipLocation = letters[i] + numInLocation;
@@ -83,11 +83,11 @@ export class Gameboard {
             for(let i = startIndex; i < startIndex + lengthOfBattleShip; i++) { //checks for clashes of ships
                 let shipLocation = letters[i] + numInLocation;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return
+                    return 'cant place'
                 }
             } 
             if(preDefinedLetters.includes(headLocation[0])) { //Places ship locations down
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfBattleShip; i++) {
                     let shipLocation = letters[i] + numInLocation;
@@ -103,11 +103,11 @@ export class Gameboard {
             for(let i = startIndex; i < startIndex + lengthOfSubmarine; i++) { //checks for clashes of ships
                 let shipLocation = letters[i] + numInLocation;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return
+                    return 'cant place'
                 }
 
             if(preDefinedLetters.includes(headLocation[0])) {
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfSubmarine; i++) {
                     let shipLocation = letters[i] + numInLocation;
@@ -122,11 +122,11 @@ export class Gameboard {
             for(let i = startIndex; i < startIndex + lengthOfDestroyer; i++) { //checks for clashes of ships
                 let shipLocation = letters[i] + numInLocation;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return
+                    return 'cant place'
                 }
             }
             if(preDefinedLetters.includes(headLocation[0])) {
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfDestroyer; i++) {
                     let shipLocation = letters[i] + numInLocation;
@@ -140,11 +140,11 @@ export class Gameboard {
             for(let i = startIndex; i < startIndex + lengthOfPatrol; i++) { //checks for clashes of ships
                 let shipLocation = letters[i] + numInLocation;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return
+                    return 'cant place'
                 }
             }
             if(preDefinedLetters.includes(headLocation[0])) {
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfPatrol; i++) {
                     let shipLocation = letters[i] + numInLocation;
@@ -152,7 +152,7 @@ export class Gameboard {
                 }
             }
         } else {
-            return "Not a valid ship";
+            return "cant place";
         }
 
     } else if (direction === 'horizontal') { //Horizontal Placement
@@ -173,11 +173,11 @@ export class Gameboard {
             for (let i = num; i < num + lengthOfAircraftCarrier; i++) { //Checks for clashes
                 let shipLocation = letterInLocation + i;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return;
+                    return 'cant place';
                 }
             }
             if((lengthOfAircraftCarrier - 1 + num) > 10) {
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = num; i < num + lengthOfAircraftCarrier; i++) {
                     let shipLocation = letterInLocation + i;
@@ -190,11 +190,11 @@ export class Gameboard {
             for (let i = num; i < num + lengthOfBattleShip; i++) { //Checks for clashes
                 let shipLocation = letterInLocation + i;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return;
+                    return 'cant place';
                 }
             }
             if((lengthOfBattleShip - 1 + num) > 10) { //Places battleship in position
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for(let i = num; i < num + lengthOfBattleShip; i++) {
                     let shipLocation = letterInLocation + i;
@@ -208,11 +208,11 @@ export class Gameboard {
             for (let i = num; i < num + lengthOfSubmarine; i++) { //Checks for clashes
                 let shipLocation = letterInLocation + i;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return;
+                    return 'cant place';
                 }
             }
             if((lengthOfSubmarine - 1 + num) > 10) {
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = num; i < num + lengthOfSubmarine; i++) {
                     let shipLocation = letterInLocation + i;
@@ -225,11 +225,11 @@ export class Gameboard {
             for (let i = num; i < num + lengthOfDestroyer; i++) { //Checks for clashes
                 let shipLocation = letterInLocation + i;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return;
+                    return 'cant place';
                 }
             }
             if((lengthOfDestroyer - 1 + num) > 10) {
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = num; i < num + lengthOfDestroyer; i++) {
                     let shipLocation = letterInLocation + i;
@@ -242,11 +242,11 @@ export class Gameboard {
             for (let i = num; i < num + lengthOfPatrol; i++) { //Checks for clashes
                 let shipLocation = letterInLocation + i;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    return;
+                    return 'cant place';
                 }
             }
             if((lengthOfPatrol - 1 + num) > 10) {
-                return 'cant fit here';
+                return 'cant place';
             } else {
                 for (let i = num; i < num + lengthOfPatrol; i++) {
                     let shipLocation = letterInLocation + i;
