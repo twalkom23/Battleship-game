@@ -98,6 +98,22 @@ body {
     justify-content: center;
     margin-left: 25%;
 }
+.startOfGameInstructionsContainer {
+    grid-row: 2/3;
+    grid-column: 3/4;
+}
+.computerScoreContainer {
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+.playerScoreHeading {
+    font-size: large;
+    font-weight: bold;
+}
+.compScoreHeading {
+    font-size: large;
+    font-weight: bold;
+}
 
 
 

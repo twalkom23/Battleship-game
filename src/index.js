@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import { Ships, Gameboard} from './ships';
 import './style.css';
-import { playerBoardSquares, directionalButtons, directionPlacement, shipSelection, shipSelectionButtons, disableShipButtons} from './boardSquares';
-import { newGameSetUp, startButton } from './dom';
+import { directionalButtons, shipSelectionButtons, disableShipButtons} from './boardSquares';
+import { newGameSetUp, pressStartGameButton, htmlSetUpForGameIsReady} from './dom';
 
 let practice = document.querySelector('.newGameButton');
+let gameReady = false;
+
 
 
 //Creating all of the ships
@@ -33,6 +35,8 @@ function playGame() {
     directionalButtons();
     shipSelectionButtons();
     disableShipButtons();
+    pressStartGameButton();
+
     
     
        

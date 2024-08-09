@@ -120,6 +120,7 @@ export function disableShipButtons() {
             }
             if (count === 5) {
                 startGameButton.disabled = false;
+                startGameButton.classList.toggle('highlightShipButtons', true);
             }
             
 
