@@ -363,9 +363,6 @@ recieveAttack(location) {
     }
 }
 checkForCompHit(coord) {
-    console.log(coord);
-    console.log(this.coordinates[coord]);
-    console.log(this.shipPlacement[coord]);
     if (this.coordinates[coord] === false) {
         this.coordinates[coord] = true;
         if (this.shipPlacement[coord] !== null) { //this will run if a ship was in the location

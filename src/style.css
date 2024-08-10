@@ -114,9 +114,16 @@ body {
     font-size: large;
     font-weight: bold;
 }
-
-
-
+.redCross {
+    color: red;
+    font-size: large;
+    font-weight: bold;
+}
+.greenCross {
+    color: green;
+    font-size: large;
+    font-weight: bold;
+}
 
 
 

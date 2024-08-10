@@ -120,6 +120,11 @@ function htmlSetUpForGameIsReady(){ //changing the HTML set up once the game is 
 
 export function playerMoveCrosses (coord, hitOrNot) {
     let square = coord + 'm';
-    console.log(hitOrNot);
-    console.log(square);
+    const selectedSquare = document.querySelector(`.${square}`);
+    selectedSquare.textContent = 'X';
+    if (hitOrNot === false) {
+        selectedSquare.classList.toggle('redCross', true);
+    } else { 
+        selectedSquare.classList.toggle('greenCross', true);
+    }
 }
