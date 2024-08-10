@@ -1,6 +1,6 @@
 export let directionPlacement = null;
 export let shipSelection = null;
-
+import { compGameBoard } from ".";
 import { playerGameBoard} from ".";
 
 let count = 0;
@@ -127,4 +127,13 @@ export function disableShipButtons() {
         }
         })
        
+}
+
+export function playerMove () {
+    const compBoard = document.querySelector('.movesBoard');
+    compBoard.addEventListener('click', (event) => {
+        let board = event.target.classList.value;
+        let boardTarget = board.slice(0, -1);
+        compGameBoard.checkForCompHit(boardTarget);
+    })
 }

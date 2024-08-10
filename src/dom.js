@@ -1,4 +1,7 @@
+
+
 const startGameButton = document.querySelector('.startGameButton');
+
 
 
 export function newGameSetUp() {
@@ -113,14 +116,10 @@ function htmlSetUpForGameIsReady(){ //changing the HTML set up once the game is 
      computerScoreContainer.appendChild(submarineScoreComp);
      computerScoreContainer.appendChild(destroyerScoreComp);
      computerScoreContainer.appendChild(patrolScoreComp);
-
-
-
-    
-
-
-    
-
-
 }
 
+export function playerMoveCrosses (coord, hitOrNot) {
+    let square = coord + 'm';
+    console.log(hitOrNot);
+    console.log(square);
+}

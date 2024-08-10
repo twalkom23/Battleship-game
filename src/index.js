@@ -1,11 +1,10 @@
 import _ from 'lodash';
 import { Ships, Gameboard} from './ships';
 import './style.css';
-import { directionalButtons, shipSelectionButtons, disableShipButtons} from './boardSquares';
-import { newGameSetUp, pressStartGameButton, htmlSetUpForGameIsReady} from './dom';
+import { directionalButtons, shipSelectionButtons, disableShipButtons, playerMove} from './boardSquares';
+import { newGameSetUp, pressStartGameButton} from './dom';
 
-let practice = document.querySelector('.newGameButton');
-let gameReady = false;
+const playerHit = document.querySelector('.movesBoard');
 
 
 
@@ -16,11 +15,11 @@ const playerSubmarine = new Ships(3);
 const playerDestroyer = new Ships(3);
 const playerPatrol = new Ships(2);
 
-const compAircraftCarrier = new Ships(5);
-const compBattleship = new Ships(4);
-const compSubmarine = new Ships(3);
-const compDestroyer = new Ships(3);
-const compPatrol = new Ships(2);
+export const compAircraftCarrier = new Ships(5);
+export const compBattleship = new Ships(4);
+export const compSubmarine = new Ships(3);
+export const compDestroyer = new Ships(3);
+export const compPatrol = new Ships(2);
 
 //creating the gameboards
 export const playerGameBoard = new Gameboard;
@@ -32,13 +31,13 @@ newGameSetUp(); //refreshes the board when a new game is started
 
 function playGame() {
     compGameBoard.randomiseCompShips(); //randomly places the computers ships in position
-    directionalButtons();
-    shipSelectionButtons();
-    disableShipButtons();
-    pressStartGameButton();
-
-    
-    
+    directionalButtons(); //Waits for directional button clicks
+    shipSelectionButtons(); //Waits for ship selection clicks
+    disableShipButtons(); //Disables the ship button once ship has been placed
+    pressStartGameButton(); //Runs the functions that need to happen once ships have been placed and game is ready to start
+    playerMove();
+    console.log(compGameBoard);
+     
        
      }
 

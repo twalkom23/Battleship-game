@@ -1,5 +1,6 @@
 //creating the ship class and then creating the actual ships
-
+import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol } from ".";
+import { playerMoveCrosses } from "./dom";
 export class Ships{
     constructor(length) {
         this.hits = 0;
@@ -16,6 +17,7 @@ export class Ships{
 
     isSunk(){
         this.sunk = true;
+        console.log('sunk');
     }
 }
 
@@ -349,17 +351,52 @@ randomSquareSelection(array) { //used to pick the head square at random
     return array[randomIndex];
 }
 
-    recieveAttack(location) {
-        if (this.coordinates[location] === false) {
-            this.coordinates[location] = true;
-            if (this.shipPlacement[location] !== null) {
-                let shipHit = this.shipPlacement[location];
-                return shipHit;
-            }
-        } else { 
-            return 'Location already hit';
+recieveAttack(location) {
+    if (this.coordinates[location] === false) {
+        this.coordinates[location] = true;
+        if (this.shipPlacement[location] !== null) {
+            let shipHit = this.shipPlacement[location];
+            return shipHit;
         }
+    } else { 
+        return 'Location already hit';
     }
+}
+checkForCompHit(coord) {
+    console.log(coord);
+    console.log(this.coordinates[coord]);
+    console.log(this.shipPlacement[coord]);
+    if (this.coordinates[coord] === false) {
+        this.coordinates[coord] = true;
+        if (this.shipPlacement[coord] !== null) { //this will run if a ship was in the location
+            console.log('hit ship');
+            playerMoveCrosses(coord, true);
+            switch (this.shipPlacement[coord]) {
+                case 'AircraftCarrier':
+                    compAircraftCarrier.hit();
+                    break;
+                case 'Battleship':
+                    compBattleship.hit();
+                    break;
+                case 'Submarine':
+                    compSubmarine.hit();
+                    break;
+                case 'Destroyer':
+                    compDestroyer.hit();
+                    break;
+                case 'Patrol':
+                    compPatrol.hit();
+                    break;
+            }
+        } else {
+            playerMoveCrosses(coord, false);
+            console.log('did not hit ship');
+        }
+    } else {
+        console.log('spot already hit');
+    }
+}
+
     }
 
     
