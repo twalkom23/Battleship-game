@@ -124,7 +124,10 @@ body {
     font-size: large;
     font-weight: bold;
 }
-
+.unclickable {
+    pointer-events: none;
+    cursor: not-allowed;
+}
 
 
 /* placing all the labels for the moves board (top Board) */

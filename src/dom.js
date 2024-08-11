@@ -38,9 +38,11 @@ export function newGameSetUp() {
 }
 export function pressStartGameButton() {
     startGameButton.addEventListener('click', () => {
-        startGameButton.disabled = true;
+        startGameButton.disabled = true;  
         startGameButton.classList.toggle('highlightShipButtons', false);
-        htmlSetUpForGameIsReady();
+        const enableBoard = document.querySelector('.movesBoard'); //This will make the moves board clickable
+        enableBoard.classList.toggle('unclickable');
+        htmlSetUpForGameIsReady(); //to add some basic html changes to the site
     })
 }
 function htmlSetUpForGameIsReady(){ //changing the HTML set up once the game is ready to play
