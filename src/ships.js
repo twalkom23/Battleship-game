@@ -1,6 +1,7 @@
 //creating the ship class and then creating the actual ships
-import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol } from ".";
-import { playerMoveCrosses } from "./dom";
+import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol, playerTurn } from ".";
+import { playerMoveCrosses, scoreBoard } from "./dom";
+
 export class Ships{
     constructor(length) {
         this.hits = 0;
@@ -8,8 +9,13 @@ export class Ships{
         this.length = length;
     }
 
-    hit(){
+    hit(shipName){
         this.hits++;
+        let score = this.length - this.hits;
+        console.log(score);
+        console.log(playerTurn);
+        console.log(shipName);
+        scoreBoard(score, playerTurn, shipName)
         if(this.hits === this.length) {
             this.isSunk();
         }
@@ -100,7 +106,7 @@ export class Gameboard {
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfBattleShip; i++) {
                     let shipLocation = letters[i] + numInLocation;
-                    this.shipPlacement[shipLocation] = 'BattleShip';
+                    this.shipPlacement[shipLocation] = 'battleship';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -115,17 +121,16 @@ export class Gameboard {
             for(let i = startIndex; i < startIndex + lengthOfSubmarine; i++) { //checks for clashes of ships
                 let shipLocation = letters[i] + numInLocation;
                 if(this.shipPlacement[shipLocation] !== null) {
-                    console.log('here 1 ');
                     return 'cant place';
                 }
             }
             if(preDefinedLetters.includes(headLocation[0])) {
-                console.log('here2');
+                
                 return 'cant place';
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfSubmarine; i++) {
                     let shipLocation = letters[i] + numInLocation;
-                    this.shipPlacement[shipLocation] = 'Submarine';
+                    this.shipPlacement[shipLocation] = 'submarine';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -147,7 +152,7 @@ export class Gameboard {
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfDestroyer; i++) {
                     let shipLocation = letters[i] + numInLocation;
-                    this.shipPlacement[shipLocation] = 'Destroyer';
+                    this.shipPlacement[shipLocation] = 'destroyer';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -168,7 +173,7 @@ export class Gameboard {
             } else {
                 for (let i = startIndex; i < startIndex + lengthOfPatrol; i++) {
                     let shipLocation = letters[i] + numInLocation;
-                    this.shipPlacement[shipLocation] = 'Patrol';
+                    this.shipPlacement[shipLocation] = 'patrol';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -204,7 +209,7 @@ export class Gameboard {
             } else {
                 for (let i = num; i < num + lengthOfAircraftCarrier; i++) {
                     let shipLocation = letterInLocation + i;
-                    this.shipPlacement[shipLocation] = 'AircraftCarrier';
+                    this.shipPlacement[shipLocation] = 'aircraftCarrier';
                     if(playComp === 'player'){
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -224,7 +229,7 @@ export class Gameboard {
             } else {
                 for(let i = num; i < num + lengthOfBattleShip; i++) {
                     let shipLocation = letterInLocation + i;
-                    this.shipPlacement[shipLocation] = 'BattleShip';
+                    this.shipPlacement[shipLocation] = 'battleship';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -245,7 +250,7 @@ export class Gameboard {
             } else {
                 for (let i = num; i < num + lengthOfSubmarine; i++) {
                     let shipLocation = letterInLocation + i;
-                    this.shipPlacement[shipLocation] = 'Submarine';
+                    this.shipPlacement[shipLocation] = 'submarine';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -265,7 +270,7 @@ export class Gameboard {
             } else {
                 for (let i = num; i < num + lengthOfDestroyer; i++) {
                     let shipLocation = letterInLocation + i;
-                    this.shipPlacement[shipLocation] = 'Destroyer';
+                    this.shipPlacement[shipLocation] = 'destroyer';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -285,7 +290,7 @@ export class Gameboard {
             } else {
                 for (let i = num; i < num + lengthOfPatrol; i++) {
                     let shipLocation = letterInLocation + i;
-                    this.shipPlacement[shipLocation] = 'Patrol';
+                    this.shipPlacement[shipLocation] = 'patrol';
                     if(playComp === 'player') {
                     this.displayShipsOnBoard(shipLocation);
                     }
@@ -365,32 +370,31 @@ recieveAttack(location) {
 checkForCompHit(coord) {
     if (this.coordinates[coord] === false) {
         this.coordinates[coord] = true;
+        
         if (this.shipPlacement[coord] !== null) { //this will run if a ship was in the location
-            console.log('hit ship');
             playerMoveCrosses(coord, true);
-            switch (this.shipPlacement[coord]) {
-                case 'AircraftCarrier':
-                    compAircraftCarrier.hit();
+            switch (this.shipPlacement[coord]){
+                case 'aircraftCarrier':
+                    compAircraftCarrier.hit('aircraftCarrier');
                     break;
-                case 'Battleship':
-                    compBattleship.hit();
+                case 'battleship':
+                    compBattleship.hit('battleship');
                     break;
-                case 'Submarine':
-                    compSubmarine.hit();
+                case 'submarine':
+                    compSubmarine.hit('submarine');
                     break;
-                case 'Destroyer':
-                    compDestroyer.hit();
+                case 'destroyer':
+                    compDestroyer.hit('destroyer');
                     break;
-                case 'Patrol':
-                    compPatrol.hit();
+                case 'patrol':
+                    compPatrol.hit('patrol');
                     break;
             }
         } else {
             playerMoveCrosses(coord, false);
-            console.log('did not hit ship');
         }
     } else {
-        console.log('spot already hit');
+        
     }
 }
 

@@ -5,7 +5,7 @@ import { directionalButtons, shipSelectionButtons, disableShipButtons, playerMov
 import { newGameSetUp, pressStartGameButton} from './dom';
 
 const playerHit = document.querySelector('.movesBoard');
-
+export const playerTurn = true;
 
 
 //Creating all of the ships
@@ -36,7 +36,7 @@ function playGame() {
     disableShipButtons(); //Disables the ship button once ship has been placed
     pressStartGameButton(); //Runs the functions that need to happen once ships have been placed and game is ready to start
     playerMove();
-    console.log(compGameBoard);
+  
      
        
      }

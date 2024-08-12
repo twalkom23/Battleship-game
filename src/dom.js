@@ -130,3 +130,38 @@ export function playerMoveCrosses (coord, hitOrNot) {
         selectedSquare.classList.toggle('greenCross', true);
     }
 }
+
+export function scoreBoard(score, whosTurn, ship) { //This function will adjust the scoreboard when a ship is hit
+    const airCraftCompScore = document.querySelector('.airCraftScoreComp');
+    const battleshipCompScore = document.querySelector('.battleshipScoreComp');
+    const submarineCompScore = document.querySelector('.submarineScoreComp');
+    const destroyerCompScore = document.querySelector('.destroyerScoreComp');
+    const patrolCompScore = document.querySelector('.patrolScoreComp');
+    const airCraftPlayerScore = document.querySelector('.airCraftScore');
+    const battleshipPlayerScore = document.querySelector('.battleshipScore');
+    const submarinePlayerScore = document.querySelector('.submarineScore');
+    const destroyerPlayerScore = document.querySelector('.destroyerScore');
+    const patrolPlayerScore = document.querySelector('.patrolScore');
+    if (ship === 'aircraftCarrier') { //adjusts the score if an aircraft carrier is hit
+        if (whosTurn === true) {airCraftCompScore.textContent = `${score} - Aircraft Carrier`}
+        else {airCraftPlayerScore.textContent = `${score} - Aircraft Carrier`};
+
+    } else if (ship === 'battleship') {//adjust the scores if a battleship is hit
+        if (whosTurn === true) {battleshipCompScore.textContent = `${score} - BattleShip`}
+        else {battleshipPlayerScore.textContent = `${score} - BattleShip`};
+
+    } else if (ship === 'submarine'){ //adjusts the score if a submarine is hit
+        if (whosTurn === true) {submarineCompScore.textContent = `${score} - Submarine`}
+        else {submarinePlayerScore.textContent = `${score} - Submarine`};
+
+    } else if (ship === 'destroyer'){ //adjusts the score if a destroyer is hit
+        if(whosTurn === true) {destroyerCompScore.textContent = `${score} - Destroyer`}
+        else {destroyerPlayerScore.text = `${score} - Destroyer`};
+    }
+    else { //Adjust the score if patrol is hit
+        if(whosTurn === true) {patrolCompScore.textContent = `${score} - Patrol`}
+        else {patrolPlayerScore.textContent = `${score} - Patrol`};
+    }
+}
+
+    
