@@ -1,5 +1,5 @@
 //creating the ship class and then creating the actual ships
-import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol, state } from ".";
+import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol, playerAircraftCarrier, playerBattleship, playerSubmarine, playerDestroyer, playerPatrol, state } from ".";
 import { playerMoveCrosses, scoreBoard } from "./dom";
 
 export class Ships{
@@ -397,6 +397,23 @@ checkForCompHit(coord) {
 checkForPlayerHit(coord) {
     if (this.shipPlacement[coord] !== null) {//This will run if the computer hits a ship
         playerMoveCrosses(coord, true);
+        switch (this.shipPlacement[coord]){
+            case 'aircraftCarrier':
+                playerAircraftCarrier.hit('aircraftCarrier');
+                break;
+            case 'battleship':
+                playerBattleship.hit('battleship');
+                break;
+            case 'submarine':
+                playerSubmarine.hit('submarine');
+                break;
+            case 'destroyer':
+                playerDestroyer.hit('destroyer');
+                break;
+            case 'patrol':
+                playerPatrol.hit('patrol');
+                break;
+        }
     } else {
         playerMoveCrosses(coord, false);
     }   

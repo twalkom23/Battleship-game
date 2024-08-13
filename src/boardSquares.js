@@ -143,8 +143,10 @@ export function playerMove () { //all of the players moves will be run from this
 }
 
 function compMove() { //This function will be where all the functions for the computers move will be run out of
+    
     let attackPoint = compRandomAttack();
     playerGameBoard.checkForPlayerHit(attackPoint);
+    console.log(playerGameBoard.coordinates);
     state.playerTurn = true;
 
 }
@@ -159,6 +161,7 @@ function compRandomAttack() { //Picks a square on the board at random and checks
     const randomIndex = Math.floor(Math.random() * arrayOfSquares.length);
     const attackPoint = arrayOfSquares[randomIndex];
     if (playerGameBoard.coordinates[attackPoint] === false) { //checks to make sure it has not been hit yet
+        playerGameBoard.coordinates[attackPoint] = true;
         return attackPoint;
     }
 }

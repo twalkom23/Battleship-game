@@ -11,11 +11,11 @@ export const state = {
 
 
 //Creating all of the ships
-const playerAircraftCarrier = new Ships(5);
-const playerBattleship = new Ships(4);
-const playerSubmarine = new Ships(3);
-const playerDestroyer = new Ships(3);
-const playerPatrol = new Ships(2);
+export const playerAircraftCarrier = new Ships(5);
+export const playerBattleship = new Ships(4);
+export const playerSubmarine = new Ships(3);
+export const playerDestroyer = new Ships(3);
+export const playerPatrol = new Ships(2);
 
 export const compAircraftCarrier = new Ships(5);
 export const compBattleship = new Ships(4);
