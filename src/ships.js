@@ -1,5 +1,5 @@
 //creating the ship class and then creating the actual ships
-import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol, playerTurn } from ".";
+import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol, state } from ".";
 import { playerMoveCrosses, scoreBoard } from "./dom";
 
 export class Ships{
@@ -12,10 +12,7 @@ export class Ships{
     hit(shipName){
         this.hits++;
         let score = this.length - this.hits;
-        console.log(score);
-        console.log(playerTurn);
-        console.log(shipName);
-        scoreBoard(score, playerTurn, shipName)
+        scoreBoard(score, state.playerTurn, shipName)
         if(this.hits === this.length) {
             this.isSunk();
         }
@@ -397,7 +394,13 @@ checkForCompHit(coord) {
         
     }
 }
-
+checkForPlayerHit(coord) {
+    if (this.shipPlacement[coord] !== null) {//This will run if the computer hits a ship
+        playerMoveCrosses(coord, true);
+    } else {
+        playerMoveCrosses(coord, false);
+    }   
+}
     }
 
     

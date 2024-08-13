@@ -5,7 +5,9 @@ import { directionalButtons, shipSelectionButtons, disableShipButtons, playerMov
 import { newGameSetUp, pressStartGameButton} from './dom';
 
 const playerHit = document.querySelector('.movesBoard');
-export const playerTurn = true;
+export const state = {
+    playerTurn: true, 
+};
 
 
 //Creating all of the ships
@@ -35,7 +37,7 @@ function playGame() {
     shipSelectionButtons(); //Waits for ship selection clicks
     disableShipButtons(); //Disables the ship button once ship has been placed
     pressStartGameButton(); //Runs the functions that need to happen once ships have been placed and game is ready to start
-    playerMove();
+    playerMove(); //comp move also runs out of this. This all runs as soon as a player picks a square
   
      
        

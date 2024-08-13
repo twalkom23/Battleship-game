@@ -129,6 +129,9 @@ body {
     pointer-events: none;
     cursor: not-allowed;
 }
+.lineThrough {
+    text-decoration: line-through;
+}
 
 
 /* placing all the labels for the moves board (top Board) */

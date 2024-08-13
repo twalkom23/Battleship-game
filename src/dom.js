@@ -1,4 +1,4 @@
-
+import { state } from ".";
 
 const startGameButton = document.querySelector('.startGameButton');
 
@@ -120,8 +120,11 @@ function htmlSetUpForGameIsReady(){ //changing the HTML set up once the game is 
      computerScoreContainer.appendChild(patrolScoreComp);
 }
 
-export function playerMoveCrosses (coord, hitOrNot) {
-    let square = coord + 'm';
+export function playerMoveCrosses (coord, hitOrNot) {//This adds a cross for both the players turn and computers turn
+    let square = coord;
+    if (state.playerTurn === true) {
+    square = coord + 'm';
+    }
     const selectedSquare = document.querySelector(`.${square}`);
     selectedSquare.textContent = 'X';
     if (hitOrNot === false) {
@@ -130,6 +133,7 @@ export function playerMoveCrosses (coord, hitOrNot) {
         selectedSquare.classList.toggle('greenCross', true);
     }
 }
+
 
 export function scoreBoard(score, whosTurn, ship) { //This function will adjust the scoreboard when a ship is hit
     const airCraftCompScore = document.querySelector('.airCraftScoreComp');
@@ -143,24 +147,55 @@ export function scoreBoard(score, whosTurn, ship) { //This function will adjust 
     const destroyerPlayerScore = document.querySelector('.destroyerScore');
     const patrolPlayerScore = document.querySelector('.patrolScore');
     if (ship === 'aircraftCarrier') { //adjusts the score if an aircraft carrier is hit
-        if (whosTurn === true) {airCraftCompScore.textContent = `${score} - Aircraft Carrier`}
-        else {airCraftPlayerScore.textContent = `${score} - Aircraft Carrier`};
+        if (whosTurn === true) {
+            airCraftCompScore.textContent = `${score} - Aircraft Carrier`;
+            if(score === 0) {airCraftCompScore.classList.add('lineThrough');}
+        }
+        else {
+            airCraftPlayerScore.textContent = `${score} - Aircraft Carrier`;
+            if (score === 0){airCraftPlayerScore.classList.add('lineThrough');}
+        };
 
     } else if (ship === 'battleship') {//adjust the scores if a battleship is hit
-        if (whosTurn === true) {battleshipCompScore.textContent = `${score} - BattleShip`}
-        else {battleshipPlayerScore.textContent = `${score} - BattleShip`};
+        if (whosTurn === true) {
+            battleshipCompScore.textContent = `${score} - BattleShip`;
+            if (score === 0) {battleshipCompScore.classList.add('lineThrough');}
+        }
+        else {
+            battleshipPlayerScore.textContent = `${score} - BattleShip`;
+            if (score === 0) {battleshipPlayerScore.classList.add('lineThrough');}
+        };
 
     } else if (ship === 'submarine'){ //adjusts the score if a submarine is hit
-        if (whosTurn === true) {submarineCompScore.textContent = `${score} - Submarine`}
-        else {submarinePlayerScore.textContent = `${score} - Submarine`};
+        if (whosTurn === true) {
+            submarineCompScore.textContent = `${score} - Submarine`;
+            if(score === 0) {submarineCompScore.classList.add('lineThrough');}
+        }
+        else {
+            submarinePlayerScore.textContent = `${score} - Submarine`;
+            if(score === 0) {submarinePlayerScore.classList.add('lineThrough');}
+        };
 
     } else if (ship === 'destroyer'){ //adjusts the score if a destroyer is hit
-        if(whosTurn === true) {destroyerCompScore.textContent = `${score} - Destroyer`}
-        else {destroyerPlayerScore.text = `${score} - Destroyer`};
+        if(whosTurn === true) {
+            destroyerCompScore.textContent = `${score} - Destroyer`;
+            if(score === 0) {destroyerCompScore.classList.add('lineThrough');}
+        }
+        else {
+            destroyerPlayerScore.textContent = `${score} - Destroyer`;
+            if(score === 0) {destroyerPlayerScore.classList.add('lineThrough');}  
+        };
     }
     else { //Adjust the score if patrol is hit
-        if(whosTurn === true) {patrolCompScore.textContent = `${score} - Patrol`}
-        else {patrolPlayerScore.textContent = `${score} - Patrol`};
+        if(whosTurn === true) {
+            patrolCompScore.textContent = `${score} - Patrol`;
+            if(score === 0) {patrolCompScore.classList.add('lineThrough');}
+        }
+        else {
+            patrolPlayerScore.textContent = `${score} - Patrol`;
+            if(score === 0){patrolPlayerScore.classList.add('lineThrough');}
+        };
+
     }
 }
 
