@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { Ships, Gameboard} from './ships';
 import './style.css';
 import { directionalButtons, shipSelectionButtons, disableShipButtons, playerMove} from './boardSquares';
-import { newGameSetUp, pressStartGameButton} from './dom';
+import { newGameSetUp, pressStartGameButton, newGameButton} from './dom';
 
 const playerHit = document.querySelector('.movesBoard');
 export const state = {
@@ -32,15 +32,13 @@ newGameSetUp(); //refreshes the board when a new game is started
 
 
 function playGame() {
+    newGameButton(); //refreshes the game when the new game button is clicked
     compGameBoard.randomiseCompShips(); //randomly places the computers ships in position
     directionalButtons(); //Waits for directional button clicks
     shipSelectionButtons(); //Waits for ship selection clicks
     disableShipButtons(); //Disables the ship button once ship has been placed
     pressStartGameButton(); //Runs the functions that need to happen once ships have been placed and game is ready to start
     playerMove(); //comp move also runs out of this. This all runs as soon as a player picks a square
-  
-     
-       
      }
 
 

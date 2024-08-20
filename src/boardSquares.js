@@ -1,6 +1,7 @@
 export let directionPlacement = null;
 export let shipSelection = null;
-import { compGameBoard, playerGameBoard, state} from ".";
+import { compGameBoard, playerGameBoard, state, playerAircraftCarrier, playerBattleship, playerSubmarine, playerDestroyer, playerPatrol, compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol} from ".";
+import { endGame } from "./dom";
 
 
 
@@ -136,9 +137,13 @@ export function playerMove () { //all of the players moves will be run from this
         let board = event.target.classList.value;
         let boardTarget = board.slice(0, -1);
         compGameBoard.checkForCompHit(boardTarget);
+        if (checkForEndGame() === true) {
+            return;
+        }
         state.playerTurn = false;
-        compMove();
-
+        setTimeout(() => {
+            compMove();
+        }, 300);
     })
 }
 
@@ -146,7 +151,7 @@ function compMove() { //This function will be where all the functions for the co
     
     let attackPoint = compRandomAttack();
     playerGameBoard.checkForPlayerHit(attackPoint);
-    console.log(playerGameBoard.coordinates);
+    checkForEndGame();
     state.playerTurn = true;
 
 }
@@ -165,6 +170,14 @@ function compRandomAttack() { //Picks a square on the board at random and checks
         return attackPoint;
     }
 }
+}
+function checkForEndGame () {
+    if(playerAircraftCarrier.sunk === true && playerBattleship.sunk === true && playerSubmarine.sunk === true && playerDestroyer.sunk === true && playerPatrol.sunk === true) {
+        endGame('compWin');
+    } else if (compAircraftCarrier.sunk === true && compBattleship.sunk === true && compSubmarine.sunk === true && compDestroyer.sunk === true && compPatrol.sunk === true) {
+        endGame('playerWin');
+        return true;
+    }
 }
 
 

@@ -199,4 +199,28 @@ export function scoreBoard(score, whosTurn, ship) { //This function will adjust 
     }
 }
 
+export function endGame(winner) { //This will create the dom changes for when a game is over
+    const body = document.querySelector('body');
+    const newGameButton = document.getElementById('newGameButton');
+    const winnerText = document.createElement('p');
+    if (winner === 'playerWin') {//This will run if the player wins the game
+        body.style.pointerEvents = 'none';
+        newGameButton.style.pointerEvents = 'auto';
+        winnerText.textContent = 'Player Wins!!!';
+    } else {
+        body.style.pointerEvents = 'none';
+        newGameButton.style.pointerEvents = 'auto';
+        winnerText.textContent = 'Computer Wins!!!';
+    }
+    winnerText.classList.add('fullScreenText');
+    body.appendChild(winnerText);
+    body.classList.add('blurBackground');
+}
+
+export function newGameButton() {//Runs when the new game button is clicked
+    const newGameButton = document.getElementById('newGameButton');
+    newGameButton.addEventListener('click', () => {
+        location.reload();
+    })
+}
     

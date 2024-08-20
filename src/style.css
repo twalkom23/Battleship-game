@@ -53,7 +53,7 @@ body {
     border: black 1px solid;
 }
 
-.newGameButton {
+#newGameButton {
     grid-row: 1/2;
     grid-column: 3/4;
     height: 70%;
@@ -131,6 +131,23 @@ body {
 }
 .lineThrough {
     text-decoration: line-through;
+}
+.fullScreenText {
+    position: fixed;
+    font-size: 5vw;
+    display: flex;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    z-index: 9999;
+    height: 80%;
+    width: 100%;
+}
+.blurBackground {
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 

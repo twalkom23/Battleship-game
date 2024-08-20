@@ -1,6 +1,7 @@
 //creating the ship class and then creating the actual ships
 import { compAircraftCarrier, compBattleship, compSubmarine, compDestroyer, compPatrol, playerAircraftCarrier, playerBattleship, playerSubmarine, playerDestroyer, playerPatrol, state } from ".";
-import { playerMoveCrosses, scoreBoard } from "./dom";
+import { playerMoveCrosses, scoreBoard, endGame } from "./dom";
+
 
 export class Ships{
     constructor(length) {
@@ -20,7 +21,6 @@ export class Ships{
 
     isSunk(){
         this.sunk = true;
-        console.log('sunk');
     }
 }
 
